@@ -1,11 +1,14 @@
 package com.bytedance.videoplayer;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +91,16 @@ public class VideoActivity extends AppCompatActivity {
         });
 
         videoView = findViewById(R.id.videoView);
-        videoView.setVideoPath(getVideoPath(R.raw.bytedance));
+
+        Log.i("mmm","play");
+        Intent intent = getIntent();
+        Log.i("mmm",intent.getStringExtra("URI"));
+            videoView.setVideoURI(Uri.parse(intent.getStringExtra("URI")));
+        //Uri uri = Uri.parse("content://com.android.providers.media.documents/document/video%3A35");
+        //Log.i("mmm","uri "+uri.getPath());
+        //videoView.setVideoURI(uri);
+        //videoView.setVideoPath("content://com.android.providers.media.documents/document/video%3A35");
+        //videoView.setVideoPath(getVideoPath(R.raw.bytedance));
 
     }
 
